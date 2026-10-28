@@ -1,0 +1,50 @@
+# User Guide — v0.2.0-beta
+
+## Freeware use
+
+Personal and commercial use are free. Donations are optional. Copyright in the app and its source code is retained by the copyright holder; source code is private. Redistribution, rehosting, resale, or publication of modified versions requires prior authorization. See the [Freeware license](../README.md#freeware-license) for the complete terms. “Nono Tools” is a project brand name and does not imply a registered legal entity.
+
+個人及商業使用均免費；未經事先授權不得重新散布、另行託管、轉售或發布修改版。原始碼不公開，著作權仍由著作權人保留；完整條款以 README 的 Freeware license 為準。
+
+## Before starting
+
+Use backed-up or disposable archives first. This beta is locally ad-hoc signed, without Apple Developer ID signing or Apple notarization. If macOS prevents it from opening, wait for a signed and notarized release. Keep macOS security protections enabled.
+
+## Merge archives
+
+1. Add ZIP files or folders using drag and drop or the selection controls. Folder discovery is recursive and skips hidden items, packages, and symbolic links.
+2. Review the ZIP list and remove anything you do not want to process.
+3. Choose an output parent folder with sufficient free space.
+4. Choose whether to skip identical files at matching relative paths, then start.
+5. Wait for completion, then inspect the new output folder and JSON report.
+
+Original ZIPs are opened read-only. Each run creates a new output folder. Matching directories merge; same-name files with different content receive suffixes such as ` (2)`. Identical content at different paths is preserved. Unicode names normalize to NFC; case collisions depend on the destination filesystem. macOS metadata entries are skipped. If an archive fails validation, the entire batch stops without publishing partial output.
+
+## Progress and cancellation
+
+Progress shows archive and entry activity, rather than an estimated percentage. Cancel requests are checked at stream/entry boundaries and may wait for a decoder operation to return. Normal cancellation or errors clean up the temporary workspace. A crash or forced quit can leave hidden `.nono-zip-*` work folders; do not remove unfamiliar folders or anything while a job is still running.
+
+## Default safety limits
+
+- 100,000 entries; 20 GiB per file; 200 GiB expanded per batch.
+- Expansion ratio up to 1,000 times an archive's total size; depth up to 32.
+- 200 UTF-8 bytes per path component; 3,000 bytes per path.
+- 1 GiB free-space reserve; one-hour cooperative processing time limit.
+
+These checks are not a hard CPU or memory sandbox. Keep macOS updated and avoid archives from untrusted sources. Destination volumes must support exclusive atomic rename; unsupported destinations fail rather than fall back to overwriting behavior.
+
+## Language and support windows
+
+Open Settings with `Command-,` to choose any of eight languages or follow macOS. Close and reopen the app to check persistence if needed. System-provided dialogs may use the macOS language.
+
+The support window appears once per actual app launch and can be closed immediately. Reopen it from the app's support menu. Closing the main window does not quit the app; use the Dock or `Command-N` to reopen it. Cancel any running job and wait for cleanup before quitting with `Command-Q`.
+
+PayPal opens an external browser only when selected. USDT uses BNB Smart Chain (BEP20) only. QR codes are generated offline; they do not verify the recipient or complete payment. Donations are never required.
+
+## Privacy when sharing a problem
+
+The JSON report contains paths to your inputs and processed files. Redact paths and filenames before posting a report or screenshot. Never share passwords, API keys, wallet private keys, or recovery phrases. Extraction and QR generation work offline; this version has no payment tracking or analytics SDK.
+
+## 尚待人工驗收
+
+本次自動驗證不代表已完成實際收款、完整介面操作、大量真實照片、外接磁碟、各版本 macOS、輔助功能或下載後 Gatekeeper 驗收。請保留原始 ZIP 與備份，確認成果後再自行管理原始資料。

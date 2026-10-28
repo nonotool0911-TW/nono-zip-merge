@@ -1,0 +1,16 @@
+# Explicit public-documentation allowlist. Release binaries are uploaded separately.
+/*
+!/.gitignore
+!/README.md
+!/CHANGELOG.md
+!/RELEASE-NOTES-v0.2.0-beta.md
+!/VALIDATION-SUMMARY.md
+!/SHA256SUMS.txt
+!/docs/
+/docs/*
+!/docs/USER-GUIDE.md
+!/docs/screenshots/
+/docs/screenshots/*
+!/docs/screenshots/main-en.png
+!/docs/screenshots/main-zh-Hant.png
+!/docs/screenshots/support-en.png
