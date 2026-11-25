@@ -1,6 +1,6 @@
 # Nono ZIP Merge
 
-**v0.2.0-beta · macOS · Apple Silicon**
+**v0.3.0-beta · macOS · Apple Silicon**
 
 A free, native Mac utility for extracting multiple ZIP archives into one new output folder while keeping their folder structure. Merge matching folders, optionally skip identical files at the same relative path, and keep different files with numbered names.
 
@@ -10,13 +10,13 @@ A free, native Mac utility for extracting multiple ZIP archives into one new out
 
 Nono ZIP Merge 是免費的 Mac ZIP 批次解壓合併工具。將多個 ZIP 或包含 ZIP 的資料夾拖入 App，選擇輸出位置，即可保留資料夾結構合併到全新資料夾；同路徑相同內容可去重，不同內容使用編號名稱保留。原始 ZIP 不會被修改。
 
-目前為 **v0.2.0-beta 測試版**，僅使用本機 ad-hoc 簽署，**尚未使用 Apple Developer ID 簽署，也未通過 Apple 公證**。macOS 可能阻擋開啟；請勿停用 Gatekeeper 或移除安全保護，若被阻擋請等待已正式簽署及公證的版本。正式資料請先備份；完整人工驗收尚未完成。
+目前為 **v0.3.0-beta 測試版**，僅使用本機 ad-hoc 簽署，**尚未使用 Apple Developer ID 簽署，也未通過 Apple 公證**。macOS 可能阻擋開啟；請勿停用 Gatekeeper 或移除安全保護，若被阻擋請等待已正式簽署及公證的版本。正式資料請先備份；完整人工驗收尚未完成。
 
 ## Download
 
 Get the App ZIP and `SHA256SUMS.txt` from [GitHub Releases](https://github.com/nonotool0911-TW/nono-zip-merge/releases). The download asset is:
 
-`Nono-ZIP-Merge-v0.2.0-beta-macOS-arm64.zip`
+`Nono-ZIP-Merge-v0.3.0-beta-macOS-arm64.zip`
 
 This repository contains public documentation. Compiled app downloads belong in Releases. Swift source code and development files are not published. Use of the app is governed by the Freeware terms below.
 
@@ -41,6 +41,20 @@ These permissions do not remove the beta status, warranty disclaimer, signing li
 - Enough writable storage for extracted files plus a 1 GiB safety reserve.
 - No Homebrew, Python, Keka, or developer tools are required to use the app.
 
+## New in v0.3.0-beta
+
+- Improved file-drop handling with ordered batches and visible feedback for unreadable, unsupported, timed-out, duplicate, or rejected items.
+- Optional **Extract next to source ZIPs (create a new folder)**, off by default. The actual ZIPs must share one parent folder; otherwise choose an output location manually.
+- Folder naming can prefer a unique shared top-level folder or use the first ZIP in the displayed list. A verified shared root is removed exactly once; if unavailable, an explicit fallback preserves the full internal structure.
+- Preview the complete destination path. Existing destinations are never overwritten; numbered names are used and the actual final path is shown.
+- Manual output selection remains available when extraction next to sources is off. Generated output folders are skipped during recursive source discovery.
+
+This beta uses separate preferences from v0.2.0-beta; you may need to select your interface language again.
+
+### v0.3 繁體中文更新
+
+改善拖曳批次接收、順序及失敗回饋，新增預設關閉的原地輸出。所有實際 ZIP 必須位於同一父目錄；跨目錄時會提示改用手動位置。可優先採共同頂層資料夾名稱，或使用清單第一個 ZIP 檔名；只有符合條件才剝除共同根一層，否則明確回退且保留完整結構。預覽完整路徑、同名加編號，完成後顯示實際位置。取消勾選即可恢復手動流程。
+
 ## Features
 
 - Add multiple ZIPs, or scan selected folders recursively for ZIPs.
@@ -60,11 +74,11 @@ The app follows macOS language preferences with an English fallback. Use **Setti
 
 ## Quick start
 
-1. Compare the downloaded ZIP's SHA-256 with the published checksum: `shasum -a 256 Nono-ZIP-Merge-v0.2.0-beta-macOS-arm64.zip`.
+1. Compare the downloaded ZIP's SHA-256 with the published checksum: `shasum -a 256 Nono-ZIP-Merge-v0.3.0-beta-macOS-arm64.zip`.
 2. Extract the ZIP with Archive Utility. Move **Nono ZIP Merge.app** to a location of your choice, such as Applications.
 3. Open the app using normal macOS controls, subject to the beta signing limitation above.
 4. Dismiss the optional support window with **Continue using for free**.
-5. Add ZIPs or folders, choose an output location, and start the merge.
+5. Add ZIPs or folders. Choose an output location manually, or enable extraction next to sources and review the naming choice and complete preview path. Then start the merge.
 6. Review the new output folder and JSON report before removing any original archives.
 
 See the [User Guide](docs/USER-GUIDE.md) for behavior, limits, and privacy precautions.
@@ -93,12 +107,20 @@ This is beta software, supplied without warranties. Keep backups and test with d
 
 For issues, use the [issue tracker](https://github.com/nonotool0911-TW/nono-zip-merge/issues). Never attach private archives, unredacted reports, credentials, wallet secrets, or personal file paths.
 
-[Changelog](CHANGELOG.md) · [Release notes](RELEASE-NOTES-v0.2.0-beta.md)
+[Changelog](CHANGELOG.md) · [Release notes](RELEASE-NOTES-v0.3.0-beta.md) · [Validation summary](VALIDATION-SUMMARY.md)
 
 ## Screenshots
 
-Idle windows from the beta build; screenshots do not represent complete workflow acceptance.
+Actual v0.3.0-beta app windows captured using two synthetic ZIPs containing demonstration text only. The paths shown are generic temporary demo locations, with no personal home folder, private photos, or real case data. These screenshots demonstrate the interface, not completion of every manual acceptance scenario.
 
-![English main window](docs/screenshots/main-en.png)
-![繁體中文主視窗](docs/screenshots/main-zh-Hant.png)
-![Optional support window](docs/screenshots/support-en.png)
+**English main window — manual output selection remains available.**
+
+![v0.3.0-beta English main window](docs/screenshots/main-en.jpg)
+
+**繁體中文主畫面 — 原地輸出、自動建立資料夾與完整路徑預覽。**
+
+![v0.3.0-beta 繁中原地輸出預覽](docs/screenshots/main-zh-Hant.jpg)
+
+**Extract next to source ZIPs — new-folder naming and complete output-path preview.** The manual location button is disabled while this option is enabled.
+
+![v0.3.0-beta extraction next to sources and path preview](docs/screenshots/in-place-en.jpg)

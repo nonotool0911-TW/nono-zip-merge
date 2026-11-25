@@ -1,23 +1,32 @@
-# Local validation — v0.2.0-beta
+# Validation summary — v0.3.0-beta
 
-Prepared on 2026-10-28 using an Apple Silicon Mac running macOS 26. This is local beta evidence, not a certification for all macOS versions or filesystems.
+Validation evidence collected on 2026-11-25. These checks are not universal compatibility certification or Apple notarization.
 
-- Swift release app build: passed.
-- Existing synthetic-archive regression harness: 29 cases, 0 failures.
-- Support-feature harness: 18 cases, 0 failures, including eight-language resources, language preferences, QR payload decoding, and an isolated native test clipboard.
-- Eight language resource sets: 84 keys each, compared with their build inputs.
-- Eight-language native main/support windows: launched and captured; both QR payloads decoded from each support-window capture.
-- Bundle completeness and arm64 architecture: checked.
-- ZIP CRC, extraction, byte-for-byte file comparison, executable permissions, and extracted app signature: checked during final packaging.
-- Local code signature: valid **ad-hoc** signature only; **no Developer ID signature or Apple notarization**.
-- Public files are selected using an explicit allowlist. Documentation and uncompressed bundle contents are scanned for known local path, private account, and credential patterns. This scan is not an exhaustive guarantee against all secrets.
+## Automated evidence
 
-Restricted-environment attempts initially encountered moved compiler-cache paths and unavailable desktop services. The final build used fresh caches, and native-service tests were rerun successfully. Earlier failures were not counted as passes.
+The existing 84-case harness was rerun during preparation: 29 core, 18 support, and 37 v0.3 cases, with zero failures. The support suite includes version and intentionally limited core-change scope assertions updated for v0.3; it does not claim the entire original core is unchanged.
 
-Full manual GUI acceptance, real large archives, legacy ZIP encodings, physical large ZIP64 files, ExFAT/network volumes, all target macOS versions, accessibility, actual PayPal receipt, wallet ownership/payment receipt, and fresh-download Gatekeeper acceptance remain **unverified**. No payment or chain transaction was made. Screenshots show idle app windows, not a complete user workflow.
+Coverage includes cross-parent rejection, common-root detection/fallback, ordered drop payload handling, numbered destination conflicts (including late collisions), source ZIP immutability, traversal/link rejection, cancellation and cleanup, resource limits, language resources, QR payloads, and an isolated native clipboard. Each of eight languages has 108 interface strings.
 
-The app's numeric bundle version remains `0.2.0`; its UI and public distribution label identify the build as `v0.2.0-beta`.
+The unsupported-filesystem check injects ENOTSUP at the exclusive-rename boundary. Permission checks use local restricted directories. Neither demonstrates physical ExFAT, SMB, other network-volume, or TCC compatibility.
 
-## Payment identity and privacy review
+## User-reported real-Mac acceptance
 
-Before publication, the user confirmed that the public PayPal payment page displays “Nono ZIP Merge” and accepted the risk that payment may reveal recipient identity. This publication hold has been cleared by the user. HTTP reachability and QR payload checks do not verify account ownership or actual payment receipt; no payment or chain transaction was made during preparation.
+The user explicitly reported these four scenarios as passed on 2026-11-25:
+
+1. Single ZIP dragged from Finder appears in the list.
+2. Multiple ZIPs dragged together all appear in the correct order.
+3. Dragging a folder containing ZIPs finds the files.
+4. Extraction next to sources uses the correct automatic name and location.
+
+These are user-reported observations, not independently repeated by Codex or inferred from automated tests. No exact test machine version, filesystem, recording, or dataset fingerprint was supplied. Codex separately observed native file-picker addition, path preview, extraction, displayed final path, and restoration of manual controls.
+
+## Packaging
+
+The existing accepted v0.3 app is packaged without rebuilding or changing it. Bundle version, resources, archive round-trip, content hashes, executable permission, and deep strict local signature verification are checked during preparation. Only an ad-hoc signature is present; no Developer ID or Apple notarization is claimed. Documentation and unpacked bundle contents are checked against explicit allowlists and selected sensitive-data patterns; this is not an exhaustive secret guarantee.
+
+## Still unverified
+
+Mixed ZIP/folder Finder drops, Finder rejection/duplicate/special-name cases, the original failure's precise event/provider trigger, physical ExFAT/network volumes, TCC restrictions, all target macOS versions, large real archives/ZIP64 datasets, full eight-language GUI/accessibility checks, actual payment receipt, and quarantined-download Gatekeeper acceptance remain unverified. Keep backups and test with non-important data.
+
+The three screenshots now show actual accepted v0.3.0-beta app windows: English manual-output mode, Traditional Chinese extraction next to sources, and English new-folder/path preview. Only synthetic text ZIPs and generic temporary demo paths were used. Screenshots do not certify every manual workflow. The current beta uses a separate preferences identity from v0.2.

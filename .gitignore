@@ -4,6 +4,7 @@
 !/README.md
 !/CHANGELOG.md
 !/RELEASE-NOTES-v0.2.0-beta.md
+!/RELEASE-NOTES-v0.3.0-beta.md
 !/VALIDATION-SUMMARY.md
 !/SHA256SUMS.txt
 !/docs/
@@ -11,6 +12,6 @@
 !/docs/USER-GUIDE.md
 !/docs/screenshots/
 /docs/screenshots/*
-!/docs/screenshots/main-en.png
-!/docs/screenshots/main-zh-Hant.png
-!/docs/screenshots/support-en.png
+!/docs/screenshots/main-en.jpg
+!/docs/screenshots/main-zh-Hant.jpg
+!/docs/screenshots/in-place-en.jpg

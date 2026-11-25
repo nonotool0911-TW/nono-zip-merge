@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.0-beta — 2026-11-25
+
+- Improved drag payload handling, ordered batches, failure feedback, and duplicate handling.
+- Added optional extraction next to ZIPs sharing the same actual parent folder.
+- Added shared-root or first-ZIP naming, explicit fallback, destination preview, and safe numbered conflicts.
+- Preserved manual output selection, archive structure, deduplication, reports, cancellation, and exclusive atomic publication.
+- Excluded generated output folders from recursive source discovery.
+- Updated all eight languages. Automated validation covers 84 cases. The user separately reported four real Finder/output acceptance scenarios as passed.
+- Local ad-hoc signature only; no Developer ID or Apple notarization. External/network filesystems and remaining manual scenarios are unverified.
+
+
 ## v0.2.0-beta — 2026-10-28
 
 - Added eight interface languages, system-language matching, and a saved manual language choice.
